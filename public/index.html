@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GeoCoding | API</title>
+	<style>
+		.heading {
+	text-align: center;
+	color: red;
+	background-color: 
+	}
+
+	.input {
+	text-align: center;
+	color: blue;
+	}
+
+	.output {
+	text-align: center;
+	color: brown;
+	}
+	</style>
+</head>
+<body>
+	<div class="heading">
+		<h1>The GeoCoding API</h1>
+		<h3>Enter the Address and Get the Latitude and Longitude</h3>
+	</div>
+	<br><br>
+	<div class="input">
+		<h2>Enter location</h2>
+		<input type="text" id="location" name="location">
+		<br><br>
+		<button type="button" id="btn">submit</button>
+	</div>
+
+	<p id="error_op"></p>
+
+	<div class="output">
+		<h3>Latitude</h3>
+		<p id="latitude"></p>
+		<h3>Longitude</h3>
+		<p id="longitude"></p>
+	</div>
+
+
+	<script>
+		let btn = document.getElementById("btn");
+	let address = document.getElementById("location");
+	let latitude = document.getElementById("latitude");
+	let longitude = document.getElementById("longitude");
+	let message = document.getElementById("error_op");
+	
+
+	btn.onclick = validate;
+
+	function validate() {
+	alert(address.value);
+	let ksar = address.value;
+
+	if(ksar == "") {
+		message.innerHTML = "enter correct location";
+	}
+	else {
+		fetch('http://localhost:8000/index.html', {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({location: ksar})
+		}).then((response) => {
+			if(response.status == 200) {
+				console.log("nice response");
+				return response.json();
+			}
+			else {
+				console.log("bad request");
+			}
+		}).then((data) => {
+			console.log(data);
+			latitude.innerHTML = data.latitude;
+			longitude.innerHTML = data.longitude;
+			console.log("here1");
+		}).then((error) => {
+			console.log(error);
+		});
+	}
+}
+	</script>
+
+
+</body>
+</html>

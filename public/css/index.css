@@ -1,0 +1,15 @@
+.heading {
+	text-align: center;
+	color: red;
+	background-color: yellow;
+}
+
+.input {
+	text-align: center;
+	color: blue;
+}
+
+.output {
+	text-align: center;
+	color: brown;
+}
