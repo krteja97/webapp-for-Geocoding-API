@@ -19,3 +19,6 @@ tools used:
    urllib for retrieving data from API.
    json for parsing the retrieved information from API.
    sys for making interaction between nodeJS and python3 script.
+   
+6) most importantly one needs to have API key purchased/authorised from Google Maps API.
+   wiyhout having the key, the requests cannot be made to API.
